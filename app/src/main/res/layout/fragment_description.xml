@@ -45,7 +45,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="@string/gender"
+        android:text="@string/attack_type"
         app:layout_constraintTop_toBottomOf="@+id/tv_hero_name"
         app:layout_constraintStart_toStartOf="@+id/cardview_img_desc"/>
 
@@ -70,7 +70,7 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="@string/race"
+        android:text="@string/roles"
         app:layout_constraintTop_toBottomOf="@+id/tv_gender"
         app:layout_constraintStart_toStartOf="@+id/cardview_img_desc"/>
 
@@ -87,30 +87,6 @@
         app:layout_constraintStart_toEndOf="@+id/tv_race"
         app:layout_constraintTop_toTopOf="@+id/tv_race" />
 
-    <TextView
-        android:id="@+id/tv_occupation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="@string/occupation"
-        app:layout_constraintTop_toBottomOf="@+id/tv_race"
-        app:layout_constraintStart_toStartOf="@+id/cardview_img_desc"/>
-
-    <TextView
-        android:id="@+id/tv_occupation_hero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Male"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_occupation"
-        app:layout_constraintStart_toEndOf="@+id/tv_occupation"
-        app:layout_constraintTop_toTopOf="@+id/tv_occupation" />
 
 
 

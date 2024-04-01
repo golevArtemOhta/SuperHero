@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.Main.MainFragment">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_super_hero"
         android:layout_width="match_parent"
