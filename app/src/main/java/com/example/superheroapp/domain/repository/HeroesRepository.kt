@@ -6,4 +6,6 @@ interface HeroesRepository {
 
     suspend fun getAllHeroesUseCase(): List<HeroItem>?
 
+    suspend fun getHeroByIdUseCase(id: Int): HeroItem?
+
 }

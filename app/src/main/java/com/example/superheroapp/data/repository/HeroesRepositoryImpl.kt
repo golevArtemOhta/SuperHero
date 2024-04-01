@@ -11,4 +11,10 @@ class HeroesRepositoryImpl : HeroesRepository {
         val response = api.getSuperHeroes()
         return response.body()
     }
+
+    override suspend fun getHeroByIdUseCase(id: Int): HeroItem? {
+        val response = api.getSuperHeroes()
+        val hero = response.body()?.get(id)
+        return hero
+    }
 }

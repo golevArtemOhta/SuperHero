@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardview_img_desc" />
 
     <TextView
-        android:id="@+id/tv_gender"
+        android:id="@+id/tv_attack_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="@+id/cardview_img_desc"/>
 
     <TextView
-        android:id="@+id/tv_gender_hero"
+        android:id="@+id/tv_attack_type_hero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Male"
@@ -58,12 +58,12 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_gender"
-        app:layout_constraintStart_toEndOf="@+id/tv_gender"
-        app:layout_constraintTop_toTopOf="@+id/tv_gender" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_attack_type"
+        app:layout_constraintStart_toEndOf="@+id/tv_attack_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_attack_type" />
 
     <TextView
-        android:id="@+id/tv_race"
+        android:id="@+id/tv_roles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -71,21 +71,22 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="@string/roles"
-        app:layout_constraintTop_toBottomOf="@+id/tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/tv_attack_type"
         app:layout_constraintStart_toStartOf="@+id/cardview_img_desc"/>
 
     <TextView
-        android:id="@+id/tv_race_hero"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_roles_hero"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
         android:text="Male"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginStart="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_race"
-        app:layout_constraintStart_toEndOf="@+id/tv_race"
-        app:layout_constraintTop_toTopOf="@+id/tv_race" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_roles"
+        app:layout_constraintTop_toTopOf="@+id/tv_roles" />
 
 
 
