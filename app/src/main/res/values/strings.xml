@@ -4,5 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="attack_type">Attack type:</string>
     <string name="roles">Roles:</string>
+    <string name="title_activity_desc_screen">DescScreen</string>
 
 </resources>
