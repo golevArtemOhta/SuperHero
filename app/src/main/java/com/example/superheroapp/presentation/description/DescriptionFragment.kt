@@ -17,7 +17,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DescriptionFragment : Fragment() {
-    lateinit var binding: FragmentDescriptionBinding
+    private var _binding: FragmentDescriptionBinding? = null
+    private val binding get() = _binding!!
     private val viewModel by viewModel<DescriptionViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +34,8 @@ class DescriptionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDescriptionBinding.inflate(inflater)
+        _binding = FragmentDescriptionBinding.inflate(inflater)
         return binding.root
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,10 +53,12 @@ class DescriptionFragment : Fragment() {
                 var roles = heroes.roles.joinToString(", ")
                 tvRolesHero.text = roles
             }
-
         }
+    }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
