@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.superheroapp.domain.model.HeroItem
 import com.example.superheroapp.domain.repository.HeroesRepository
 import com.example.superheroapp.domain.usecase.GetAllHeroesUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val getAllHeroesUseCase: GetAllHeroesUseCase): ViewModel() {
@@ -16,7 +17,7 @@ class MainViewModel(private val getAllHeroesUseCase: GetAllHeroesUseCase): ViewM
         get() = _heroesList
 
     fun getHeroesList(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _heroesList.postValue(getAllHeroesUseCase.getAllHeroesUseCase())
         }
     }

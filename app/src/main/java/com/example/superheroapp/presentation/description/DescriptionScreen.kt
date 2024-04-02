@@ -31,8 +31,8 @@ fun DescriptionScreen(idHero: Int?,
                       navController: NavController,
                       viewModel: DescriptionViewModel = koinViewModel()
 ){
-    //viewModel.getHeroById(idHero)
-    //val hero = viewModel.hero.observeAsState()
+    viewModel.getHeroById(idHero!!)
+    val hero = viewModel.hero.observeAsState()
     Column(modifier = Modifier.fillMaxSize().background(Color.White)) {
         Image(
             modifier = Modifier

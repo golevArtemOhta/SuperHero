@@ -37,12 +37,12 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun MainScreen(navController: NavController, viewModel: MainViewModel = koinViewModel()){
     viewModel.getHeroesList()
-    val heroesList = viewModel.heroesList.observeAsState()
-        LazyColumn{
-        items(heroesList.value!!.size){
+    val heroesList = viewModel.heroesList.observeAsState().value
+        LazyColumn {
+        items(heroesList!!.size){
             HeroCard(
-                onItemClick = { navController.navigate("${Screen.DescriptionScreen.route}/${heroesList.value!![it].id}") },
-                name = heroesList.value!![it].localized_name)
+                onItemClick = { navController.navigate("${Screen.DescriptionScreen.route}/${heroesList[it].id}") },
+                name = heroesList[it].localized_name)
         }
     }
 }
