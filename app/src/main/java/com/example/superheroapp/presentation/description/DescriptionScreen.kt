@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.superheroapp.R
 import org.koin.androidx.compose.koinViewModel
@@ -31,20 +33,35 @@ fun DescriptionScreen(idHero: Int?,
                       navController: NavController,
                       viewModel: DescriptionViewModel = koinViewModel()
 ){
-    viewModel.getHeroById(idHero!!)
-    val hero = viewModel.hero.observeAsState()
-    Column(modifier = Modifier.fillMaxSize().background(Color.White)) {
+    LaunchedEffect(key1 = idHero) {
+        if (idHero != null) {
+            viewModel.getHeroById(idHero)
+        }
+    }
+    viewModel.hero.collectAsStateWithLifecycle().value?.let{ uiStateHero ->
+        Description(uiStateHero = uiStateHero)
+    }
+
+}
+
+@Composable
+fun Description(uiStateHero: DescriptionViewModel.UIStateHero){
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.White)) {
         Image(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp),
             painter = painterResource(id = R.drawable.hero_example),
             contentDescription = "Hero example",
-            contentScale = ContentScale.Crop)
+            contentScale = ContentScale.Crop
+        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text(modifier = Modifier.fillMaxWidth(), text = "Batman",
+        Text(
+            modifier = Modifier.fillMaxWidth(), text = "${uiStateHero.hero?.localized_name}",
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
@@ -52,33 +69,34 @@ fun DescriptionScreen(idHero: Int?,
         Spacer(modifier = Modifier.height(10.dp))
 
         Row {
-            Text(modifier = Modifier, text = "Batman",
+            Text(
+                modifier = Modifier, text = "Attack type",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.width(15.dp))
-            Text(modifier = Modifier, text = "Batmddddan",
+            Text(
+                modifier = Modifier, text = "\"${uiStateHero.hero?.attack_type}\"",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
         Row {
-            Text(modifier = Modifier, text = "Batman",
+            Text(
+                modifier = Modifier, text = "Roles",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.width(15.dp))
-            Text(modifier = Modifier, text = "Batmddddan",
+            Text(
+                modifier = Modifier, text = "${uiStateHero.hero?.roles.toString()}",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
         }
-
-
     }
 }
-
 
 @Preview
 @Composable

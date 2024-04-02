@@ -10,17 +10,20 @@ import com.example.superheroapp.presentation.Main.MainScreen
 import com.example.superheroapp.presentation.description.DescriptionScreen
 
 @Composable
-fun Navigation(){
+fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.MainScreen.route){
-        composable(route = Screen.MainScreen.route){
+    NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
+        composable(route = Screen.MainScreen.route) {
             MainScreen(navController = navController)
         }
         composable(
-            route = Screen.DescriptionScreen.route + "/idHero",
-            arguments =listOf(navArgument("idHero") { type = NavType.IntType } )){
-            entry ->
-            DescriptionScreen(idHero = entry.arguments?.getInt("idHero"), navController = navController)
+            route = "${Screen.DescriptionScreen.route}/{idHero}",
+            arguments = listOf(navArgument("idHero") { type = NavType.IntType })
+        ) { entry ->
+            DescriptionScreen(
+                idHero = entry.arguments?.getInt("idHero"),
+                navController = navController
+            )
         }
     }
 }

@@ -8,17 +8,28 @@ import com.example.superheroapp.domain.model.HeroItem
 import com.example.superheroapp.domain.repository.HeroesRepository
 import com.example.superheroapp.domain.usecase.GetAllHeroesUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val getAllHeroesUseCase: GetAllHeroesUseCase): ViewModel() {
 
-    private val _heroesList = MutableLiveData<List<HeroItem>>()
-    val heroesList: LiveData<List<HeroItem>>
+    data class UIState(val heroesList: List<HeroItem> = emptyList(), val error: String? = null)
+
+    private val _heroesList = MutableStateFlow<UIState>(UIState())
+    val heroesList: StateFlow<UIState>
         get() = _heroesList
 
-    fun getHeroesList(){
+    init {
+        getHeroesList()
+    }
+    private fun getHeroesList(){
         viewModelScope.launch(Dispatchers.IO) {
-            _heroesList.postValue(getAllHeroesUseCase.getAllHeroesUseCase())
+            getAllHeroesUseCase.getAllHeroesUseCase()?.let { list ->
+                _heroesList.update { it.copy(list) }
+            }
+
         }
     }
 
